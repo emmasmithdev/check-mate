@@ -57,7 +57,10 @@ public class User {
         this.password = password;
         this.profilePicture = profilePicture;
         this.mood = mood;
+        this.groups = new ArrayList<>();
+        this.tags = new ArrayList<>();
         this.comments = new ArrayList<>();
+
     }
 
     public User() {
