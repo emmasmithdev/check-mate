@@ -14,9 +14,6 @@ import org.springframework.stereotype.Component;
 public class DataLoader implements ApplicationRunner {
 
     @Autowired
-    CheckRepository checkRepository;
-
-    @Autowired
     CommentRepository commentRepository;
 
     @Autowired
