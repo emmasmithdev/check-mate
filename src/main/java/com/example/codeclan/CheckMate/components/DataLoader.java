@@ -61,6 +61,19 @@ public class DataLoader implements ApplicationRunner {
         commentRepository.save(comment1);
         commentRepository.save(comment2);
 
+        group1.addUser(emma);
+        group1.addUser(charlie);
+        group1.addUser(greg);
+        group2.addUser(charlie);
+        group3.addUser(emma);
+        group3.addUser(greg);
+        emma.addGroup(group1);
+        charlie.addGroup(group1);
+        greg.addGroup(group1);
+        emma.addGroup(group3);
+        charlie.addGroup(group2);
+        greg.addGroup(group3);
+
     }
 
 }
