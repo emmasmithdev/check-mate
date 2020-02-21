@@ -38,6 +38,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Comment> comments;
 
+    @JsonBackReference
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
+
     @JsonIgnoreProperties(value="users")
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
@@ -59,6 +63,7 @@ public class User {
         this.mood = mood;
         this.groups = new ArrayList<>();
         this.tags = new ArrayList<>();
+        this.posts = new ArrayList<>();
         this.comments = new ArrayList<>();
 
     }
@@ -138,5 +143,13 @@ public class User {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 }
