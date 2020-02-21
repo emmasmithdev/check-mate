@@ -2,8 +2,8 @@ package com.example.codeclan.CheckMate.models;
 
 import com.example.codeclan.CheckMate.models.enums.Mood;
 import com.example.codeclan.CheckMate.models.enums.Tag;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -34,6 +34,7 @@ public class User {
 
     @JsonIgnoreProperties(value="users")
     @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
             name="users_groups",
             joinColumns = {@JoinColumn(name="user_id", nullable=false, updatable=false)},
