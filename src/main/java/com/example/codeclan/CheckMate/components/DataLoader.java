@@ -4,10 +4,7 @@ import com.example.codeclan.CheckMate.models.Comment;
 import com.example.codeclan.CheckMate.models.Group;
 import com.example.codeclan.CheckMate.models.Post;
 import com.example.codeclan.CheckMate.models.User;
-import com.example.codeclan.CheckMate.repositories.CheckRepository;
-import com.example.codeclan.CheckMate.repositories.GroupRepository;
-import com.example.codeclan.CheckMate.repositories.PostRepository;
-import com.example.codeclan.CheckMate.repositories.UserRepository;
+import com.example.codeclan.CheckMate.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -20,7 +17,7 @@ public class DataLoader implements ApplicationRunner {
     CheckRepository checkRepository;
 
     @Autowired
-    CheckRepository commentRepository;
+    CommentRepository commentRepository;
 
     @Autowired
     GroupRepository groupRepository;
@@ -53,12 +50,6 @@ public class DataLoader implements ApplicationRunner {
         groupRepository.save(group3);
         groupRepository.save(group4);
 
-        Comment comment1 = new Comment(charlie, "Cats are not capable of love.");
-        Comment comment2 = new Comment(emma, "Dogs are smelly!");
-
-        commentRepository.save(comment1);
-        commentRepository.save(comment2);
-
         Post post1 = new Post(emma, "Cats are better than dogs!", group1);
         Post post2 = new Post(charlie, "Dogs are better than cats!", group1);
         Post post3 = new Post(greg, "Parasite is the best movie of the last decade!", group1);
@@ -66,6 +57,13 @@ public class DataLoader implements ApplicationRunner {
         postRepository.save(post1);
         postRepository.save(post2);
         postRepository.save(post3);
+
+        Comment comment1 = new Comment(charlie, "Cats are not capable of love.", post1);
+        Comment comment2 = new Comment(emma, "Dogs are smelly!", post1);
+
+        commentRepository.save(comment1);
+        commentRepository.save(comment2);
+
     }
 
 }

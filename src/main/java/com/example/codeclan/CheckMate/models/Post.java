@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="posts")
@@ -31,11 +32,11 @@ public class Post {
     private ArrayList<Tag> tags;
 
     @Column(name="reactions")
-    private ArrayList<Reaction> reactions;
+    private List<Reaction> reactions;
 
     @JsonIgnoreProperties(value="post")
-    @OneToMany(mappedBy = "post_id", fetch = FetchType.LAZY)
-    private ArrayList<Comment> comments;
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
+    private List<Comment> comments;
 
     @JsonIgnoreProperties(value="posts")
     @ManyToOne
@@ -86,7 +87,7 @@ public class Post {
         this.date = date;
     }
 
-    public ArrayList<Tag> getTags() {
+    public List<Tag> getTags() {
         return tags;
     }
 
@@ -94,7 +95,7 @@ public class Post {
         this.tags = tags;
     }
 
-    public ArrayList<Reaction> getReactions() {
+    public List<Reaction> getReactions() {
         return reactions;
     }
 
@@ -102,7 +103,7 @@ public class Post {
         this.reactions = reactions;
     }
 
-    public ArrayList<Comment> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 

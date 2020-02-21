@@ -7,6 +7,7 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -39,10 +40,10 @@ public class User {
             name="users_groups",
             joinColumns = {@JoinColumn(name="user_id", nullable=false, updatable=false)},
             inverseJoinColumns = {@JoinColumn(name="group_id", nullable=false, updatable=false)})
-    private ArrayList<Group> groups;
+    private List<Group> groups;
 
     @Column(name="tags")
-    private ArrayList<Tag> tags;
+    private List<Tag> tags;
 
     // Change String mood to Mood mood once Enums available
     public User(String name, String username, String password, String profilePicture, String mood) {
@@ -51,6 +52,8 @@ public class User {
         this.password = password;
         this.profilePicture = profilePicture;
         this.mood = mood;
+        this.groups = new ArrayList<>();
+        this.tags = new ArrayList<>();
     }
 
     public User() {
@@ -106,7 +109,7 @@ public class User {
         this.mood = mood;
     }
 
-    public ArrayList<Group> getGroups() {
+    public List<Group> getGroups() {
         return groups;
     }
 
@@ -114,7 +117,7 @@ public class User {
         this.groups = groups;
     }
 
-    public ArrayList<Tag> getTags() {
+    public List<Tag> getTags() {
         return tags;
     }
 
