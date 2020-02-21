@@ -1,4 +1,9 @@
 package com.example.codeclan.CheckMate.repositories;
 
-public interface PostRepository {
+import com.example.codeclan.CheckMate.models.Post;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface PostRepository extends JpaRepository<Post, Long> {
 }
