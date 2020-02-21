@@ -2,6 +2,7 @@ package com.example.codeclan.CheckMate.models;
 
 import com.example.codeclan.CheckMate.models.enums.Mood;
 import com.example.codeclan.CheckMate.models.enums.Tag;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
@@ -33,6 +34,10 @@ public class User {
     @Column(name="mood")
     private String mood;
 
+    @JsonBackReference
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments;
+
     @JsonIgnoreProperties(value="users")
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
@@ -52,6 +57,7 @@ public class User {
         this.password = password;
         this.profilePicture = profilePicture;
         this.mood = mood;
+        this.comments = new ArrayList<>();
     }
 
     public User() {
@@ -123,4 +129,11 @@ public class User {
         this.tags = tags;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 }
