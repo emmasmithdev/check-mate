@@ -1,5 +1,8 @@
 package com.example.codeclan.CheckMate.models.enums;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 public enum Tag {
 
     OPENING_UP("Opening Up"),

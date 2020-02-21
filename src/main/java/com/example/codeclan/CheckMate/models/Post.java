@@ -4,11 +4,14 @@ import com.example.codeclan.CheckMate.models.enums.Reaction;
 import com.example.codeclan.CheckMate.models.enums.Tag;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javassist.compiler.ast.Keyword;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -19,7 +22,8 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="user")
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Column(name="content")
@@ -31,7 +35,10 @@ public class Post {
     @Column(name="tags")
     private ArrayList<Tag> tags;
 
-    @Column(name="reactions")
+    @ElementCollection(targetClass = Reaction.class)
+    @CollectionTable(name = "post_reactions", joinColumns = @JoinColumn(name = "post_id"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "reaction_id")
     private List<Reaction> reactions;
 
     @JsonIgnoreProperties(value="post")
@@ -128,5 +135,9 @@ public class Post {
     }
     public void addComment(Comment comment){
         this.comments.add(comment);
+    }
+    @GetMapping
+    public List<Reaction> displayReactions() {
+        return Arrays.asList(Reaction.values());
     }
 }

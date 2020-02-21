@@ -48,6 +48,8 @@ public class User {
     private List<Group> groups;
 
     @Column(name="tags")
+    @ElementCollection(targetClass = Tag.class)
+    @Enumerated(EnumType.STRING)
     private List<Tag> tags;
 
     // Change String mood to Mood mood once Enums available
