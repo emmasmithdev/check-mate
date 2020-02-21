@@ -7,6 +7,7 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -39,7 +40,7 @@ public class User {
             name="users_groups",
             joinColumns = {@JoinColumn(name="user_id", nullable=false, updatable=false)},
             inverseJoinColumns = {@JoinColumn(name="group_id", nullable=false, updatable=false)})
-    private ArrayList<Group> groups;
+    private List<Group> groups;
 
     @Column(name="tags")
     private ArrayList<Tag> tags;
@@ -106,7 +107,7 @@ public class User {
         this.mood = mood;
     }
 
-    public ArrayList<Group> getGroups() {
+    public List<Group> getGroups() {
         return groups;
     }
 

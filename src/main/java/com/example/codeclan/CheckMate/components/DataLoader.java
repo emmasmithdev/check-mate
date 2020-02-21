@@ -4,10 +4,7 @@ import com.example.codeclan.CheckMate.models.Comment;
 import com.example.codeclan.CheckMate.models.Group;
 import com.example.codeclan.CheckMate.models.Post;
 import com.example.codeclan.CheckMate.models.User;
-import com.example.codeclan.CheckMate.repositories.CheckRepository;
-import com.example.codeclan.CheckMate.repositories.GroupRepository;
-import com.example.codeclan.CheckMate.repositories.PostRepository;
-import com.example.codeclan.CheckMate.repositories.UserRepository;
+import com.example.codeclan.CheckMate.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -20,7 +17,7 @@ public class DataLoader implements ApplicationRunner {
     CheckRepository checkRepository;
 
     @Autowired
-    CheckRepository commentRepository;
+    CommentRepository commentRepository;
 
     @Autowired
     GroupRepository groupRepository;
