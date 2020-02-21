@@ -43,7 +43,7 @@ public class User {
     private List<Group> groups;
 
     @Column(name="tags")
-    private ArrayList<Tag> tags;
+    private List<Tag> tags;
 
     // Change String mood to Mood mood once Enums available
     public User(String name, String username, String password, String profilePicture, String mood) {
@@ -111,15 +111,15 @@ public class User {
         return groups;
     }
 
-    public void setGroups(ArrayList<Group> groups) {
+    public void setGroups(List<Group> groups) {
         this.groups = groups;
     }
 
-    public ArrayList<Tag> getTags() {
+    public List<Tag> getTags() {
         return tags;
     }
 
-    public void setTags(ArrayList<Tag> tags) {
+    public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
 
