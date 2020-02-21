@@ -2,7 +2,8 @@ package com.example.codeclan.CheckMate.models;
 
 import com.example.codeclan.CheckMate.models.enums.Mood;
 import com.example.codeclan.CheckMate.models.enums.Tag;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -27,17 +28,23 @@ public class User {
     @Column(name="profile_picture")
     private String profilePicture;
 
+    // Change String to Mood once enums available
     @Column(name="mood")
     private String mood;
 
-    @JsonBackReference
+    @JsonIgnoreProperties(value="users")
     @ManyToMany
-    @JoinColumn(name="groups")
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name="users_groups",
+            joinColumns = {@JoinColumn(name="user_id", nullable=false, updatable=false)},
+            inverseJoinColumns = {@JoinColumn(name="group_id", nullable=false, updatable=false)})
     private ArrayList<Group> groups;
 
     @Column(name="tags")
     private ArrayList<Tag> tags;
 
+    // Change String mood to Mood mood once Enums available
     public User(String name, String username, String password, String profilePicture, String mood) {
         this.name = name;
         this.username = username;
@@ -89,11 +96,13 @@ public class User {
         this.profilePicture = profilePicture;
     }
 
-    public Mood getMood() {
+    // Change String to Mood once enums available
+    public String getMood() {
         return mood;
     }
 
-    public void setMood(Mood mood) {
+    // Change String to Mood once enums available
+    public void setMood(String mood) {
         this.mood = mood;
     }
 
