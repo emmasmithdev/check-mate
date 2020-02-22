@@ -15,29 +15,29 @@ public class PostController {
     @Autowired
     PostRepository postRepository;
 
-    @GetMapping(value="/posts")
+    @GetMapping(value="/api/posts")
     public ResponseEntity<List<Post>> getAllPosts() {
         return new ResponseEntity<>(postRepository.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping(value="posts/{id}")
+    @GetMapping(value="/api/posts/{id}")
     public ResponseEntity getPost(@PathVariable Long id) {
         return new ResponseEntity<>(postRepository.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping(value="/posts")
+    @PostMapping(value="/api/posts")
     public ResponseEntity<Post> postPost(@RequestBody Post post) {
         postRepository.save(post);
         return new ResponseEntity<>(post, HttpStatus.CREATED);
     }
 
-    @PatchMapping(value="posts/{id}")
+    @PatchMapping(value="/api/posts/{id}")
     public ResponseEntity<Post> updatePost(@RequestBody Post post) {
         postRepository.save(post);
         return new ResponseEntity<>(post, HttpStatus.OK);
     }
 
-    @DeleteMapping(value="posts/{id}")
+    @DeleteMapping(value="/api/posts/{id}")
     public ResponseEntity<Post> deletePost(@PathVariable Long id) {
         Post found = postRepository.getOne(id);
         postRepository.delete(found);
