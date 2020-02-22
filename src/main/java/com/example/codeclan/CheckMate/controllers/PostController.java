@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class PostController {
@@ -21,7 +22,7 @@ public class PostController {
     }
 
     @GetMapping(value="posts/{id}")
-    public ResponseEntity getPost(@PathVariable Long id) {
+    public ResponseEntity<Optional<Post>> getPost(@PathVariable Long id) {
         return new ResponseEntity<>(postRepository.findById(id), HttpStatus.OK);
     }
 

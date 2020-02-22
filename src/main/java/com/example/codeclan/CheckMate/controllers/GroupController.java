@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class GroupController {
@@ -21,7 +22,7 @@ public class GroupController {
     }
 
     @GetMapping(value="groups/{id}")
-    public ResponseEntity getGroup(@PathVariable Long id) {
+    public ResponseEntity<Optional<Group>> getGroup(@PathVariable Long id) {
         return new ResponseEntity<>(groupRepository.findById(id), HttpStatus.OK);
     }
 

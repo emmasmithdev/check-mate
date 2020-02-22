@@ -154,4 +154,8 @@ public class User {
     public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
+
+    public void addGroup(Group group) {
+        this.groups.add(group);
+    }
 }

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -21,7 +22,7 @@ public class UserController {
     }
 
     @GetMapping(value="/users/{id}")
-    public ResponseEntity getUser(@PathVariable Long id) {
+    public ResponseEntity<Optional<User>> getUser(@PathVariable Long id) {
         return new ResponseEntity<>(userRepository.findById(id), HttpStatus.OK);
     }
 

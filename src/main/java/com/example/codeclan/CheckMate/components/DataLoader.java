@@ -30,6 +30,8 @@ public class DataLoader implements ApplicationRunner {
 
     public void run(ApplicationArguments args) {
 
+
+
         User emma = new User("Emma Smith", "emzo11", "thereisnospoon", "picture", "happy");
         User charlie = new User("Charlie Anderson", "charlieboy", "dogsruleok", "picture", "happy");
         User greg = new User("Greg Shanks", "parasitefan4eva", "rosebud", "picture", "happy");
