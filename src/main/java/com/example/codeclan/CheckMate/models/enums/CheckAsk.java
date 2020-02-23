@@ -1,5 +1,8 @@
 package com.example.codeclan.CheckMate.models.enums;
 
+import java.util.ArrayList;
+import java.util.EnumMap;
+
 public enum CheckAsk {
     ONE("I haven't heard from you in awhile, are you okay?"),
     TWO("I saw that something happened, how are you feeling?"),
@@ -12,7 +15,7 @@ public enum CheckAsk {
     NINE("How are you feeling today?"),
     TEN("Do you want me to come over?");
 
-    private final String check;
+    public final String check;
 
     CheckAsk(String check) {
         this.check = check;
@@ -20,5 +23,13 @@ public enum CheckAsk {
 
     public String getCheck() {
         return this.check;
+    }
+
+    public EnumMap<CheckAsk, String> getAllChecks() {
+        EnumMap<CheckAsk, String> allChecks = new EnumMap<CheckAsk, String>(CheckAsk.class);
+        for(CheckAsk check : CheckAsk.values()) {
+            allChecks.put(check, check.check);
+        }
+        return allChecks;
     }
 }
