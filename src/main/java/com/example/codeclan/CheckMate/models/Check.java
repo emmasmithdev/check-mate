@@ -1,6 +1,8 @@
 package com.example.codeclan.CheckMate.models;
 
 import com.example.codeclan.CheckMate.models.enums.CheckAsk;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -13,10 +15,12 @@ public class Check {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnoreProperties("comments")
     @ManyToOne
     @JoinColumn(name = "author_id", nullable = false)
     private User author;
 
+    @JsonIgnoreProperties("comments")
     @ManyToOne
     @JoinColumn(name = "recipient_id", nullable = false)
     private User recipient;

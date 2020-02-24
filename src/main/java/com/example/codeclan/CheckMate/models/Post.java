@@ -2,6 +2,8 @@ package com.example.codeclan.CheckMate.models;
 
 import com.example.codeclan.CheckMate.models.enums.Reaction;
 import com.example.codeclan.CheckMate.models.enums.Tag;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -18,6 +20,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -37,11 +40,11 @@ public class Post {
     @Column(name = "reaction_id")
     private List<Reaction> reactions;
 
-    @JsonIgnoreProperties(value="post")
+    @JsonIgnore
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
     private List<Comment> comments;
 
-    @JsonIgnoreProperties(value="posts")
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="group_id", nullable = false)
     private Group group;

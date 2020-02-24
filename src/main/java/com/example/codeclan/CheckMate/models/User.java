@@ -34,20 +34,20 @@ public class User {
     @Column(name="mood")
     private String mood;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties("user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Comment> comments;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties("user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Post> posts;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "author")
+    @JsonIgnoreProperties("recipient")
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
     private List<Check> sentChecks;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "recipient")
+    @JsonIgnoreProperties("recipient")
+    @OneToMany(mappedBy = "recipient", fetch = FetchType.LAZY)
     private List<Check> receivedChecks;
 
     @JsonIgnoreProperties(value="users")

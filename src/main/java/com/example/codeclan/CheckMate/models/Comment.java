@@ -1,5 +1,9 @@
 package com.example.codeclan.CheckMate.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +14,7 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -17,6 +22,7 @@ public class Comment {
     @Column(name="content")
     private String content;
 
+    @JsonIgnoreProperties(value = "user")
     @ManyToOne
     @JoinColumn(name="post_id", nullable = false)
     private Post post;
