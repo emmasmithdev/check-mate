@@ -2,16 +2,12 @@ package com.example.codeclan.CheckMate.models;
 
 import com.example.codeclan.CheckMate.models.enums.Reaction;
 import com.example.codeclan.CheckMate.models.enums.Tag;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import javassist.compiler.ast.Keyword;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -136,8 +132,5 @@ public class Post {
     public void addComment(Comment comment){
         this.comments.add(comment);
     }
-    @GetMapping
-    public List<Reaction> displayReactions() {
-        return Arrays.asList(Reaction.values());
-    }
+
 }

@@ -4,6 +4,7 @@ import com.example.codeclan.CheckMate.models.Comment;
 import com.example.codeclan.CheckMate.models.Group;
 import com.example.codeclan.CheckMate.models.Post;
 import com.example.codeclan.CheckMate.models.User;
+import com.example.codeclan.CheckMate.models.enums.Reaction;
 import com.example.codeclan.CheckMate.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -50,6 +51,9 @@ public class DataLoader implements ApplicationRunner {
         Post post1 = new Post(emma, "Cats are better than dogs!", group1);
         Post post2 = new Post(charlie, "Dogs are better than cats!", group1);
         Post post3 = new Post(greg, "Parasite is the best movie of the last decade!", group1);
+
+        post1.addReaction(Reaction.CAT);
+        post1.addReaction(Reaction.LOVE);
 
         postRepository.save(post1);
         postRepository.save(post2);
