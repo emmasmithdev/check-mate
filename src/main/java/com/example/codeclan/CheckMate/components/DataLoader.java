@@ -1,9 +1,8 @@
 package com.example.codeclan.CheckMate.components;
 
-import com.example.codeclan.CheckMate.models.Comment;
-import com.example.codeclan.CheckMate.models.Group;
-import com.example.codeclan.CheckMate.models.Post;
-import com.example.codeclan.CheckMate.models.User;
+import com.example.codeclan.CheckMate.models.enums.Reaction;
+import com.example.codeclan.CheckMate.models.*;
+import com.example.codeclan.CheckMate.models.enums.CheckAsk;
 import com.example.codeclan.CheckMate.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -24,6 +23,9 @@ public class DataLoader implements ApplicationRunner {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    CheckRepository checkRepository;
 
     public DataLoader() {
     }
@@ -53,6 +55,9 @@ public class DataLoader implements ApplicationRunner {
         Post post2 = new Post(charlie, "Dogs are better than cats!", group1);
         Post post3 = new Post(greg, "Parasite is the best movie of the last decade!", group1);
 
+        post1.addReaction(Reaction.CAT);
+        post1.addReaction(Reaction.LOVE);
+
         postRepository.save(post1);
         postRepository.save(post2);
         postRepository.save(post3);
@@ -63,18 +68,26 @@ public class DataLoader implements ApplicationRunner {
         commentRepository.save(comment1);
         commentRepository.save(comment2);
 
+        Check check1 = new Check(emma, charlie, CheckAsk.ONE);
+        Check check2 = new Check(charlie, greg, CheckAsk.TWO);
+        Check check3 = new Check(greg, emma, CheckAsk.THREE);
+
+        checkRepository.save(check1);
+        checkRepository.save(check2);
+        checkRepository.save(check3);
+
         group1.addUser(emma);
         group1.addUser(charlie);
         group1.addUser(greg);
         group2.addUser(charlie);
         group3.addUser(emma);
         group3.addUser(greg);
-        emma.addGroup(group1);
-        charlie.addGroup(group1);
-        greg.addGroup(group1);
-        emma.addGroup(group3);
-        charlie.addGroup(group2);
-        greg.addGroup(group3);
+//        emma.addGroup(group1);
+//        charlie.addGroup(group1);
+//        greg.addGroup(group1);
+//        emma.addGroup(group3);
+//        charlie.addGroup(group2);
+//        greg.addGroup(group3);
 
     }
 
