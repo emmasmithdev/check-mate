@@ -31,6 +31,10 @@ public class PostController {
         return new ResponseEntity<>(post, HttpStatus.CREATED);
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ba0db382d310d53bbebd10d12810481b600b02f9
     @PatchMapping(value="/posts/{id}")
     public ResponseEntity<Post> updatePost(@RequestBody Post post) {
         postRepository.save(post);

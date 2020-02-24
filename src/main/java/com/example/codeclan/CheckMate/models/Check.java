@@ -1,7 +1,12 @@
 package com.example.codeclan.CheckMate.models;
 
 import com.example.codeclan.CheckMate.models.enums.CheckAsk;
+<<<<<<< HEAD
 import org.hibernate.annotations.CreationTimestamp;
+=======
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+>>>>>>> ba0db382d310d53bbebd10d12810481b600b02f9
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -14,10 +19,12 @@ public class Check {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnoreProperties("comments")
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User author;
 
+    @JsonIgnoreProperties("comments")
     @ManyToOne
     @JoinColumn(name = "recipient_id", nullable = false)
     private User recipient;
