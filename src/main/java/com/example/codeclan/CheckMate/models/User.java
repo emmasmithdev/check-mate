@@ -42,6 +42,14 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Post> posts;
 
+    @JsonBackReference
+    @OneToMany(mappedBy = "author")
+    private List<Check> sentChecks;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "recipient")
+    private List<Check> receivedChecks;
+
     @JsonIgnoreProperties(value="users")
     @ManyToMany
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
@@ -67,6 +75,8 @@ public class User {
         this.tags = new ArrayList<>();
         this.posts = new ArrayList<>();
         this.comments = new ArrayList<>();
+        this.sentChecks = new ArrayList<>();
+        this.receivedChecks = new ArrayList<>();
 
     }
 
@@ -153,5 +163,13 @@ public class User {
 
     public void setPosts(List<Post> posts) {
         this.posts = posts;
+    }
+
+    public List<Check> getSentChecks() {
+        return this.sentChecks;
+    }
+
+    public List<Check> getReceivedChecks() {
+        return this.receivedChecks;
     }
 }

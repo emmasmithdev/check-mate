@@ -1,9 +1,6 @@
 package com.example.codeclan.CheckMate;
 
-import com.example.codeclan.CheckMate.repositories.CommentRepository;
-import com.example.codeclan.CheckMate.repositories.GroupRepository;
-import com.example.codeclan.CheckMate.repositories.PostRepository;
-import com.example.codeclan.CheckMate.repositories.UserRepository;
+import com.example.codeclan.CheckMate.repositories.*;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +22,9 @@ class CheckMateApplicationTests {
 
 	@Autowired
 	CommentRepository commentRepository;
+
+	@Autowired
+	CheckRepository checkRepository;
 
 
 	@Test
