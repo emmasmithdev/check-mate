@@ -20,10 +20,8 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Column(name="user_id")
+    private Long user_id;
 
     @Column(name="content")
     private String content;
@@ -41,21 +39,16 @@ public class Post {
     private List<Reaction> reactions;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
-    private List<Comment> comments;
-
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="group_id", nullable = false)
     private Group group;
 
     public Post(User user, String content,  Group group) {
-        this.user = user;
+        this.user_id = user.getId();
         this.content = content;
         this.group = group;
         this.tags = new ArrayList<>();
         this.reactions = new ArrayList<>();
-        this.comments = new ArrayList<>();
     }
 
     public Post() {
@@ -69,12 +62,12 @@ public class Post {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUser() {
+        return user_id;
     }
 
     public void setUser(User user) {
-        this.user = user;
+        this.user_id = user.getId();
     }
 
     public String getContent() {
@@ -109,14 +102,6 @@ public class Post {
         this.reactions = reactions;
     }
 
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(ArrayList<Comment> comments) {
-        this.comments = comments;
-    }
-
     public Group getGroup() {
         return group;
     }
@@ -131,9 +116,6 @@ public class Post {
 
     public void addReaction(Reaction reaction){
         this.reactions.add(reaction);
-    }
-    public void addComment(Comment comment){
-        this.comments.add(comment);
     }
 
 }

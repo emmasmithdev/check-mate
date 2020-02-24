@@ -34,21 +34,6 @@ public class User {
     @Column(name="mood")
     private String mood;
 
-    @JsonIgnoreProperties("user")
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Comment> comments;
-
-    @JsonIgnoreProperties("user")
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Post> posts;
-
-    @JsonIgnoreProperties("recipient")
-    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
-    private List<Check> sentChecks;
-
-    @JsonIgnoreProperties("recipient")
-    @OneToMany(mappedBy = "recipient", fetch = FetchType.LAZY)
-    private List<Check> receivedChecks;
 
     @JsonIgnoreProperties(value="users")
     @ManyToMany
@@ -73,10 +58,6 @@ public class User {
         this.mood = mood;
         this.groups = new ArrayList<>();
         this.tags = new ArrayList<>();
-        this.posts = new ArrayList<>();
-        this.comments = new ArrayList<>();
-        this.sentChecks = new ArrayList<>();
-        this.receivedChecks = new ArrayList<>();
 
     }
 
@@ -149,27 +130,4 @@ public class User {
         this.tags = tags;
     }
 
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
-
-    public List<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
-    }
-
-    public List<Check> getSentChecks() {
-        return this.sentChecks;
-    }
-
-    public List<Check> getReceivedChecks() {
-        return this.receivedChecks;
-    }
 }

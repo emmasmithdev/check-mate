@@ -14,10 +14,8 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Column(name="user_id")
+    private Long user_id;
 
     @Column(name="content")
     private String content;
@@ -28,7 +26,7 @@ public class Comment {
     private Post post;
 
     public Comment(User user, String content, Post post) {
-        this.user = user;
+        this.user_id = user.getId();
         this.content = content;
         this.post = post;
     }
@@ -44,12 +42,12 @@ public class Comment {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUser() {
+        return user_id;
     }
 
     public void setUser(User user) {
-        this.user = user;
+        this.user_id = user.getId();
     }
 
     public String getContent() {
