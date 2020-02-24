@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name = "app_users")
 public class User {
 
     @Id
@@ -169,6 +169,9 @@ public class User {
         return this.sentChecks;
     }
 
+    public void setSentChecks(Check check) {
+        this.sentChecks.add(check);
+    }
     public List<Check> getReceivedChecks() {
         return this.receivedChecks;
     }

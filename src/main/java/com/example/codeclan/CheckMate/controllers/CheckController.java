@@ -19,12 +19,12 @@ public class CheckController {
     @Autowired
     CheckRepository checkRepository;
 
-    @GetMapping(value="/api/checks")
+    @GetMapping(value="/checks")
     public ResponseEntity<List<Check>> getAllChecks() {
         return new ResponseEntity<>(checkRepository.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping(value="/api/checks/checkask")
+    @GetMapping(value="/checks/checkask")
     public ResponseEntity<EnumMap<CheckAsk, String>> getCheckAsks() {
         EnumMap<CheckAsk, String> allChecks = new EnumMap<>(CheckAsk.class);
         for(CheckAsk check : CheckAsk.values()) {
@@ -33,24 +33,24 @@ public class CheckController {
         return new ResponseEntity<>(allChecks, HttpStatus.OK);
     }
 
-    @GetMapping(value="/api/checks/{id}")
+    @GetMapping(value="/checks/{id}")
     public ResponseEntity getCheck(@PathVariable Long id) {
         return new ResponseEntity<>(checkRepository.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping(value="/api/checks")
+    @PostMapping(value="/checks")
     public ResponseEntity<Check> postCheck(@RequestBody Check check) {
         checkRepository.save(check);
         return new ResponseEntity<>(check, HttpStatus.CREATED);
     }
 
-    @PatchMapping(value="/api/checks/{id}")
+    @PatchMapping(value="/checks/{id}")
     public ResponseEntity<Check> updateComment(@RequestBody Check check) {
         checkRepository.save(check);
         return new ResponseEntity<>(check, HttpStatus.OK);
     }
 
-    @DeleteMapping(value="/api/checks/{id}")
+    @DeleteMapping(value="/checks/{id}")
     public ResponseEntity<Check> deleteCheck(@PathVariable Long id) {
         Check found = checkRepository.getOne(id);
         checkRepository.delete(found);

@@ -15,29 +15,29 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping(value="/api/users")
+    @GetMapping(value="/users")
     public ResponseEntity<List<User>> getAllUsers() {
         return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping(value="/api/users/{id}")
+    @GetMapping(value="/users/{id}")
     public ResponseEntity getUser(@PathVariable Long id) {
         return new ResponseEntity<>(userRepository.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping(value="/api/users")
+    @PostMapping(value="/users")
     public ResponseEntity<User> postUser(@RequestBody User user) {
         userRepository.save(user);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
-    @PatchMapping(value="/api/users/{id}")
+    @PatchMapping(value="/users/{id}")
     public ResponseEntity<User> updateUser(@RequestBody User user) {
         userRepository.save(user);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @DeleteMapping(value="/api/users/{id}")
+    @DeleteMapping(value="/users/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable Long id) {
         User found = userRepository.getOne(id);
         userRepository.delete(found);

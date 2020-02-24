@@ -1,9 +1,10 @@
 package com.example.codeclan.CheckMate.models;
 
 import com.example.codeclan.CheckMate.models.enums.CheckAsk;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.time.Instant;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name="checksSent")
@@ -14,7 +15,7 @@ public class Check {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "author_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User author;
 
     @ManyToOne
@@ -24,14 +25,13 @@ public class Check {
     @Column(name = "initialCheck")
     private String initialCheck;
 
-    @Column(name = "timestamp")
-    private Long timestamp;
+    @CreationTimestamp
+    private Timestamp timestamp;
 
     public Check(User author, User recipient, CheckAsk initialCheck) {
         this.author = author;
         this.recipient = recipient;
         this.initialCheck = initialCheck.getCheck();
-        this.timestamp = Instant.now().getEpochSecond();
     }
 
     public Check() {
@@ -46,8 +46,8 @@ public class Check {
         this.id = id;
     }
 
-    public Long getAuthor() {
-        return this.author.getId();
+    public User getAuthor() {
+        return this.author;
     }
 
     public void setAuthor(User author) {
@@ -66,7 +66,13 @@ public class Check {
         return this.initialCheck;
     }
 
-    public Long getTimestamp() {
-        return this.timestamp;
+    public void setInitialCheck(String initialCheck) {
+        this.initialCheck = initialCheck;
     }
+
+    public Long getTimestamp() {
+        return this.timestamp.getTime();
+    }
+
+
 }

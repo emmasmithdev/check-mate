@@ -66,9 +66,9 @@ public class DataLoader implements ApplicationRunner {
         commentRepository.save(comment1);
         commentRepository.save(comment2);
 
-        Check check1 = new Check(emma, charlie, CheckAsk.ONE);
-        Check check2 = new Check(charlie, greg, CheckAsk.TWO);
-        Check check3 = new Check(greg, emma, CheckAsk.THREE);
+        Check check1 = new Check(emma, greg, CheckAsk.ONE);
+        Check check2 = new Check(charlie, emma, CheckAsk.TWO);
+        Check check3 = new Check(greg, charlie, CheckAsk.THREE);
 
         checkRepository.save(check1);
         checkRepository.save(check2);
