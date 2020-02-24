@@ -1,5 +1,6 @@
 package com.example.codeclan.CheckMate.components;
 
+import com.example.codeclan.CheckMate.models.enums.CheckAns;
 import com.example.codeclan.CheckMate.models.enums.Reaction;
 import com.example.codeclan.CheckMate.models.*;
 import com.example.codeclan.CheckMate.models.enums.CheckAsk;
@@ -26,6 +27,9 @@ public class DataLoader implements ApplicationRunner {
 
     @Autowired
     CheckRepository checkRepository;
+
+    @Autowired
+    ReceivedCheckRepository receivedCheckRepository;
 
     public DataLoader() {
     }
@@ -73,6 +77,14 @@ public class DataLoader implements ApplicationRunner {
         checkRepository.save(check1);
         checkRepository.save(check2);
         checkRepository.save(check3);
+
+        ReceivedCheck receivedCheck1 = new ReceivedCheck(emma, greg, CheckAns.ONE);
+        ReceivedCheck receivedCheck2 = new ReceivedCheck(charlie, emma, CheckAns.TWO);
+        ReceivedCheck receivedCheck3 = new ReceivedCheck(greg, charlie, CheckAns.THREE);
+
+        receivedCheckRepository.save(receivedCheck1);
+        receivedCheckRepository.save(receivedCheck2);
+        receivedCheckRepository.save(receivedCheck3);
 
         group1.addUser(emma);
         group1.addUser(charlie);
