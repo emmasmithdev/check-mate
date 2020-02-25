@@ -60,8 +60,8 @@ public class DataLoader implements ApplicationRunner {
         postRepository.save(post2);
         postRepository.save(post3);
 
-        Comment comment1 = new Comment(charlie, "Cats are not capable of love.", post1);
-        Comment comment2 = new Comment(emma, "Dogs are smelly!", post1);
+        Comment comment1 = new Comment(charlie, "Cats are not capable of love.", (long) 1);
+        Comment comment2 = new Comment(emma, "Dogs are smelly!", (long) 1);
 
         commentRepository.save(comment1);
         commentRepository.save(comment2);

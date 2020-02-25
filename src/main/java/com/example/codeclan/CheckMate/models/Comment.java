@@ -1,9 +1,5 @@
 package com.example.codeclan.CheckMate.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 
 @Entity
@@ -20,15 +16,13 @@ public class Comment {
     @Column(name="content")
     private String content;
 
-    @JsonIgnoreProperties(value = "user")
-    @ManyToOne
-    @JoinColumn(name="post_id", nullable = false)
-    private Post post;
+    @Column(name="post_id", nullable = false)
+    private Long postId;
 
-    public Comment(User user, String content, Post post) {
+    public Comment(User user, String content, Long postId) {
         this.user_id = user.getId();
         this.content = content;
-        this.post = post;
+        this.postId = postId;
     }
 
     public Comment() {
@@ -58,11 +52,11 @@ public class Comment {
         this.content = content;
     }
 
-    public Post getPost() {
-        return post;
+    public Long getPostId() {
+        return postId;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public void setPostId(Long postId) {
+        this.postId = postId;
     }
 }
