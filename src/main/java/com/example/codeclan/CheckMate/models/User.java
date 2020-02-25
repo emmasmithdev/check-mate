@@ -34,6 +34,8 @@ public class User {
     @Column(name="mood")
     private String mood;
 
+    private String roles;
+
 
     @JsonIgnoreProperties(value="users")
     @ManyToMany
@@ -50,7 +52,7 @@ public class User {
     private List<Tag> tags;
 
     // Change String mood to Mood mood once Enums available
-    public User(String name, String username, String password, String profilePicture, String mood) {
+    public User(String name, String username, String password, String profilePicture, String mood, String roles) {
         this.name = name;
         this.username = username;
         this.password = password;
@@ -58,6 +60,7 @@ public class User {
         this.mood = mood;
         this.groups = new ArrayList<>();
         this.tags = new ArrayList<>();
+        this.roles = roles;
 
     }
 
@@ -130,4 +133,11 @@ public class User {
         this.tags = tags;
     }
 
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
 }
