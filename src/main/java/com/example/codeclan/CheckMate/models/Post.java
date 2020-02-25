@@ -2,6 +2,8 @@ package com.example.codeclan.CheckMate.models;
 
 import com.example.codeclan.CheckMate.models.enums.Reaction;
 import com.example.codeclan.CheckMate.models.enums.Tag;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -18,9 +20,8 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @Column(name="user_id")
+    private Long user_id;
 
     @Column(name="content")
     private String content;
@@ -37,22 +38,15 @@ public class Post {
     @Column(name = "reaction_id")
     private List<Reaction> reactions;
 
-    @JsonIgnoreProperties(value="post")
-    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
-    private List<Comment> comments;
-
-    @JsonIgnoreProperties(value="posts")
-    @ManyToOne
-    @JoinColumn(name="group_id", nullable = false)
-    private Group group;
+    @Column(name="group_id", nullable = false)
+    private Long group_id;
 
     public Post(User user, String content,  Group group) {
-        this.user = user;
+        this.user_id = user.getId();
         this.content = content;
-        this.group = group;
+        this.group_id = group.getId();
         this.tags = new ArrayList<>();
         this.reactions = new ArrayList<>();
-        this.comments = new ArrayList<>();
     }
 
     public Post() {
@@ -66,12 +60,12 @@ public class Post {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUser() {
+        return user_id;
     }
 
     public void setUser(User user) {
-        this.user = user;
+        this.user_id = user.getId();
     }
 
     public String getContent() {
@@ -106,20 +100,12 @@ public class Post {
         this.reactions = reactions;
     }
 
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(ArrayList<Comment> comments) {
-        this.comments = comments;
-    }
-
-    public Group getGroup() {
-        return group;
+    public Long getGroupId() {
+        return this.group_id;
     }
 
     public void setGroup(Group group) {
-        this.group = group;
+        this.group_id = group.getId();
     }
 
     public void addTag(Tag tag){
@@ -128,9 +114,6 @@ public class Post {
 
     public void addReaction(Reaction reaction){
         this.reactions.add(reaction);
-    }
-    public void addComment(Comment comment){
-        this.comments.add(comment);
     }
 
 }

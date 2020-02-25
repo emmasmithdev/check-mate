@@ -34,21 +34,8 @@ public class User {
     @Column(name="mood")
     private String mood;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "user")
-    private List<Comment> comments;
+    private String roles;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "user")
-    private List<Post> posts;
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "author")
-    private List<Check> sentChecks;
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "recipient")
-    private List<Check> receivedChecks;
 
     @JsonIgnoreProperties(value="users")
     @ManyToMany
@@ -65,7 +52,7 @@ public class User {
     private List<Tag> tags;
 
     // Change String mood to Mood mood once Enums available
-    public User(String name, String username, String password, String profilePicture, String mood) {
+    public User(String name, String username, String password, String profilePicture, String mood, String roles) {
         this.name = name;
         this.username = username;
         this.password = password;
@@ -73,10 +60,7 @@ public class User {
         this.mood = mood;
         this.groups = new ArrayList<>();
         this.tags = new ArrayList<>();
-        this.posts = new ArrayList<>();
-        this.comments = new ArrayList<>();
-        this.sentChecks = new ArrayList<>();
-        this.receivedChecks = new ArrayList<>();
+        this.roles = roles;
 
     }
 
@@ -149,27 +133,11 @@ public class User {
         this.tags = tags;
     }
 
-    public List<Comment> getComments() {
-        return comments;
+    public String getRoles() {
+        return roles;
     }
 
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
-
-    public List<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
-    }
-
-    public List<Check> getSentChecks() {
-        return this.sentChecks;
-    }
-
-    public List<Check> getReceivedChecks() {
-        return this.receivedChecks;
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 }

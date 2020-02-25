@@ -16,6 +16,12 @@ public class CommentController {
     @Autowired
     CommentRepository commentRepository;
 
+    @GetMapping(value = "/comments/posts")
+    public ResponseEntity<List<Comment>> findAllCommentsForSpecificPost(
+            @RequestParam(required = false, name="post_id") Long post_id){
+            return new ResponseEntity<>(commentRepository.findByPostId(post_id), HttpStatus.OK);
+    }
+
     @GetMapping(value="/comments")
     public ResponseEntity<List<Comment>> getAllComments() {
         return new ResponseEntity<>(commentRepository.findAll(), HttpStatus.OK);

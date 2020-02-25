@@ -13,13 +13,11 @@ public class Check {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id", nullable = false)
-    private User author;
+    @Column(name="author_id")
+    private Long author_id;
 
-    @ManyToOne
-    @JoinColumn(name = "recipient_id", nullable = false)
-    private User recipient;
+    @Column(name="recipient_id")
+    private Long recipient_id;
 
     @Column(name = "initialCheck")
     private String initialCheck;
@@ -28,8 +26,8 @@ public class Check {
     private Long timestamp;
 
     public Check(User author, User recipient, CheckAsk initialCheck) {
-        this.author = author;
-        this.recipient = recipient;
+        this.author_id = author.getId();
+        this.recipient_id = recipient.getId();
         this.initialCheck = initialCheck.getCheck();
         this.timestamp = Instant.now().getEpochSecond();
     }
@@ -47,19 +45,19 @@ public class Check {
     }
 
     public Long getAuthor() {
-        return this.author.getId();
+        return this.author_id;
     }
 
     public void setAuthor(User author) {
-        this.author = author;
+        this.author_id = author.getId();
     }
 
-    public User getRecipient() {
-        return this.recipient;
+    public Long getRecipient() {
+        return this.recipient_id;
     }
 
     public void setRecipient(User recipient) {
-        this.recipient = recipient;
+        this.recipient_id = recipient.getId();
     }
 
     public String getInitialCheck() {

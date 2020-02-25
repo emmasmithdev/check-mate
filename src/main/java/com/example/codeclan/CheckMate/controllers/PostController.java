@@ -1,6 +1,7 @@
 package com.example.codeclan.CheckMate.controllers;
 
 import com.example.codeclan.CheckMate.models.Post;
+import com.example.codeclan.CheckMate.repositories.CommentRepository;
 import com.example.codeclan.CheckMate.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,13 +9,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class PostController {
 
     @Autowired
     PostRepository postRepository;
+
+    @Autowired
+    CommentRepository commentRepository;
 
     @GetMapping(value="/posts")
     public ResponseEntity<List<Post>> getAllPosts() {
@@ -31,6 +34,7 @@ public class PostController {
         postRepository.save(post);
         return new ResponseEntity<>(post, HttpStatus.CREATED);
     }
+
 
     @PatchMapping(value="/posts/{id}")
     public ResponseEntity<Post> updatePost(@RequestBody Post post) {

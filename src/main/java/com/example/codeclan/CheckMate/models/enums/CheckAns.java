@@ -12,7 +12,7 @@ public enum CheckAns {
     NINE("Do you have time to chat?"),
     TEN("Can you check in on me tomorrow please?");
 
-    private final String check;
+    public final String check;
 
     CheckAns(String check) {
         this.check = check;
