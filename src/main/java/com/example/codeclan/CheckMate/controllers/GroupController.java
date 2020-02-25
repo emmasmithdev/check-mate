@@ -21,7 +21,7 @@ public class GroupController {
         return new ResponseEntity<>(groupRepository.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping(value="groups/{id}")
+    @GetMapping(value="/groups/{id}")
     public ResponseEntity<Optional<Group>> getGroup(@PathVariable Long id) {
         return new ResponseEntity<>(groupRepository.findById(id), HttpStatus.OK);
     }
@@ -32,13 +32,13 @@ public class GroupController {
         return new ResponseEntity<>(group, HttpStatus.CREATED);
     }
 
-    @PatchMapping(value="groups/{id}")
+    @PatchMapping(value="/groups/{id}")
     public ResponseEntity<Group> updateGroup(@RequestBody Group group) {
         groupRepository.save(group);
         return new ResponseEntity<>(group, HttpStatus.OK);
     }
 
-    @DeleteMapping(value="groups/{id}")
+    @DeleteMapping(value="/groups/{id}")
     public ResponseEntity<Group> deleteGroup(@PathVariable Long id) {
         Group found = groupRepository.getOne(id);
         groupRepository.delete(found);

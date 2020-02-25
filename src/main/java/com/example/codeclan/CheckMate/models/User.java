@@ -165,16 +165,11 @@ public class User {
         this.posts = posts;
     }
 
-<<<<<<< HEAD
-    public void addGroup(Group group) {
-        this.groups.add(group);
-=======
     public List<Check> getSentChecks() {
         return this.sentChecks;
     }
 
     public List<Check> getReceivedChecks() {
         return this.receivedChecks;
->>>>>>> 99e58ac106e197552cee474e557a2cf27b5dab50
     }
 }

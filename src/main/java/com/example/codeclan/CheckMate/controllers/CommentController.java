@@ -21,7 +21,7 @@ public class CommentController {
         return new ResponseEntity<>(commentRepository.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping(value="comments/{id}")
+    @GetMapping(value="/comments/{id}")
     public ResponseEntity<Optional<Comment>> getComment(@PathVariable Long id) {
         return new ResponseEntity<>(commentRepository.findById(id), HttpStatus.OK);
     }
@@ -32,13 +32,13 @@ public class CommentController {
         return new ResponseEntity<>(comment, HttpStatus.CREATED);
     }
 
-    @PatchMapping(value="comments/{id}")
+    @PatchMapping(value="/comments/{id}")
     public ResponseEntity<Comment> updateComment(@RequestBody Comment comment) {
         commentRepository.save(comment);
         return new ResponseEntity<>(comment, HttpStatus.OK);
     }
 
-    @DeleteMapping(value="comments/{id}")
+    @DeleteMapping(value="/comments/{id}")
     public ResponseEntity<Comment> deleteComment(@PathVariable Long id) {
         Comment found = commentRepository.getOne(id);
         commentRepository.delete(found);
