@@ -1,6 +1,7 @@
 package com.example.codeclan.CheckMate.controllers;
 
 import com.example.codeclan.CheckMate.models.Post;
+import com.example.codeclan.CheckMate.repositories.CommentRepository;
 import com.example.codeclan.CheckMate.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,9 @@ public class PostController {
 
     @Autowired
     PostRepository postRepository;
+
+    @Autowired
+    CommentRepository commentRepository;
 
     @GetMapping(value="/posts")
     public ResponseEntity<List<Post>> getAllPosts() {

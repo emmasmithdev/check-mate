@@ -38,15 +38,13 @@ public class Post {
     @Column(name = "reaction_id")
     private List<Reaction> reactions;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name="group_id", nullable = false)
-    private Group group;
+    @Column(name="group_id", nullable = false)
+    private Long group_id;
 
     public Post(User user, String content,  Group group) {
         this.user_id = user.getId();
         this.content = content;
-        this.group = group;
+        this.group_id = group.getId();
         this.tags = new ArrayList<>();
         this.reactions = new ArrayList<>();
     }
@@ -102,12 +100,12 @@ public class Post {
         this.reactions = reactions;
     }
 
-    public Group getGroup() {
-        return group;
+    public Long getGroupId() {
+        return this.group_id;
     }
 
     public void setGroup(Group group) {
-        this.group = group;
+        this.group_id = group.getId();
     }
 
     public void addTag(Tag tag){
