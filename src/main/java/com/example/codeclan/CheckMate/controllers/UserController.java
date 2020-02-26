@@ -26,6 +26,11 @@ public class UserController {
         return new ResponseEntity<>(userRepository.findById(id), HttpStatus.OK);
     }
 
+    @GetMapping(value="/users/username/{username}")
+    public ResponseEntity getUserByUsername(@PathVariable String username) {
+        return new ResponseEntity<>(userRepository.findByUsername(username), HttpStatus.OK);
+    }
+
     @PostMapping(value="/users")
     public ResponseEntity<User> postUser(@RequestBody User user) {
         userRepository.save(user);
