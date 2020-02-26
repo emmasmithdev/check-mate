@@ -140,4 +140,8 @@ public class User {
     public void setRoles(String roles) {
         this.roles = roles;
     }
+
+    public void addGroup(Group group){
+        this.groups.add(group);
+    }
 }

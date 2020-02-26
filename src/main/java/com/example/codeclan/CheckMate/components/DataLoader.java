@@ -92,18 +92,17 @@ public class DataLoader implements ApplicationRunner {
         receivedCheckRepository.save(receivedCheck2);
         receivedCheckRepository.save(receivedCheck3);
 
-        group1.addUser(emma);
-        group1.addUser(charlie);
-        group1.addUser(greg);
-        group2.addUser(charlie);
-        group3.addUser(emma);
-        group3.addUser(greg);
-//        emma.addGroup(group1);
-//        charlie.addGroup(group1);
-//        greg.addGroup(group1);
-//        emma.addGroup(group3);
-//        charlie.addGroup(group2);
-//        greg.addGroup(group3);
+        emma.addGroup(group1);
+        emma.addGroup(group3);
+        userRepository.save(emma);
+
+        charlie.addGroup(group1);
+        charlie.addGroup(group2);
+        userRepository.save(charlie);
+
+        greg.addGroup(group1);
+        greg.addGroup(group3);
+        userRepository.save(greg);
 
     }
 
