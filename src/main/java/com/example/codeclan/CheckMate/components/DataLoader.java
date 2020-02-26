@@ -59,9 +59,10 @@ public class DataLoader implements ApplicationRunner {
         groupRepository.save(group3);
         groupRepository.save(group4);
 
-        Post post1 = new Post(emma, "Cats are better than dogs!", group1);
-        Post post2 = new Post(charlie, "Dogs are better than cats!", group1);
-        Post post3 = new Post(greg, "Parasite is the best movie of the last decade!", group1);
+        Post post1 = new Post(emma, "Feeling excited for my group presentation!", group1);
+        Post post2 = new Post(charlie, "Feeling nervous for my job interview.", group1);
+        Post post3 = new Post(emma, "Feeling blue", group1);
+        Post post4 = new Post(greg, "Had a great day at work today.", group1);
 
         post1.addReaction(Reaction.CAT);
         post1.addReaction(Reaction.LOVE);
@@ -69,12 +70,21 @@ public class DataLoader implements ApplicationRunner {
         postRepository.save(post1);
         postRepository.save(post2);
         postRepository.save(post3);
+        postRepository.save(post4);
 
-        Comment comment1 = new Comment(charlie, "Cats are not capable of love.", (long) 1);
-        Comment comment2 = new Comment(emma, "Dogs are smelly!", (long) 1);
+        Comment comment1 = new Comment(charlie, "You'll do great!", (long) 1);
+        Comment comment2 = new Comment(emma, "Thank you!", (long) 1);
+        Comment comment3 = new Comment(greg, "Good luck", (long) 2);
+        Comment comment4 = new Comment(emma, "You'll smash it!", (long) 2);
+        Comment comment5 = new Comment(greg, "You ok hun?", (long) 3);
+        Comment comment6 = new Comment(charlie, "Amazing!", (long) 4);
 
         commentRepository.save(comment1);
         commentRepository.save(comment2);
+        commentRepository.save(comment3);
+        commentRepository.save(comment4);
+        commentRepository.save(comment5);
+        commentRepository.save(comment6);
 
         Check check1 = new Check(emma, charlie, CheckAsk.ONE);
         Check check2 = new Check(charlie, greg, CheckAsk.TWO);
